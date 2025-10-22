@@ -2,6 +2,17 @@
 
 k8s 클러스터 외부의 애플리케이션에서 CRDP protect/reveal API와 상호작용하는 파이썬 클라이언트 라이브러리와 CLI 도구입니다. 단건 및 배치(bulk) 처리를 지원하며, 성능과 기능을 확인하고, 두 모드 모두 동일한 Summary 형식으로 결과를 보여줍니다.
 
+## 아키텍처 (Architecture)
+
+아래 다이어그램은 클러스터 내 CRDP 서비스(복수의 CRDP 인스턴스/서비스), MetalLB/Ingress, 그리고 CRDP를 사용하는 애플리케이션들이 어떻게 연결되는지 보여줍니다.
+
+![CRDP architecture diagram](./CRDP_Diagram.png)
+
+요점 요약:
+- 여러 CRDP 서비스가 클러스터 내부에서 Replica Pod로 동작하고, 각 서비스는 내부 ClusterIP로 라우팅됩니다.
+- 외부 애플리케이션은 MetalLB/Ingress를 통해 RESTful API(예: 이 웹 UI)를 호출합니다.
+- Protect/Reveal API는 CRDP의 v1 엔드포인트(예: :32082)를 사용하고, Healthz는 별도의 포트(:32080)에서 제공될 수 있습니다.
+
 ## 프로젝트 구조
 
 ```
