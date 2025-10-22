@@ -2,6 +2,8 @@
 
 protect/reveal API와 상호작용하는 파이썬 클라이언트 라이브러리와 CLI 도구입니다. 단건 및 배치(bulk) 처리를 지원하며, 두 모드 모두 동일한 Summary 형식으로 결과를 보여줍니다.
 
+![CRDP Diagram](CRDP_Diagram.png)
+
 ## 프로젝트 구조
 
 ```
